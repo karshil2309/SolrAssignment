@@ -1,0 +1,39 @@
+1) Create solr core & create schema for above mentioned files with proper data types.
+See SolrJavaPracticeProduct folder for java code.
+
+2 ) Write indexing utility using java to index/update records
+java -jar -Dc=coreecommerce -Dauto example\exampledocs\post.jar server\ecommercedata.csv
+
+3) Facet queries for category, color , size , manufacturer
+http://localhost:8983/solr/coreecommerce/select?df=name&facet.field=category&facet=on&q=samsung&facet.field=size&facet.field=manufacturer&facet.field=color
+
+4) Query for highlighting search keyword in result.
+http://localhost:8983/solr/coreecommerce/select?df=name&highlightMultiTerm=true&hl.fl=name&hl.requireFieldMatch=true&hl=on&q=cricket
+
+5) Write stop-word/synonym for few relevant terms like (shoes=sneakers)
+	Did and added
+
+http://localhost:8983/solr/coreecommerce/select?df=name&q=sneaker	
+
+6) Use facet pivot , facet tagging & exclude features and build queries on dataset
+
+http://localhost:8983/solr/coreecommerce/select?df=name&facet=on&q=*%3A*&facet.pivot=category,size,color
+http://localhost:8983/solr/coreecommerce/select?df=name&facet.field=category&facet.prefix=electronics&facet=on&q=*%3A*
+http://localhost:8983/solr/coreecommerce/select?df=name&facet.field=category&facet.prefix=electronics&facet=on&q=*%3A*&fq=availability:true&fq=category:electronics&facet.field=category
+http://localhost:8983/solr/coreecommerce/select?df=name&facet.field=category&facet.prefix=electronics&facet=on&q=*%3A*&fq={!tag=ex}price:[0%20TO%20100]	
+
+
+7) Create grouping query for product category, color , size
+http://localhost:8983/solr/coreecommerce/select?q=*:*&group=true&group.query=size:[20.0+TO+42.0]&group.query=rating:[2.0+TO+8.6]&group.query=color:silver&rows=100&start=20
+http://localhost:8983/solr/coreecommerce/select?q=*:*&group=true&group.query=size:[20.0+TO+42.0]&group.query=category:Electronics&group.query=color:silver&rows=100&start=20
+
+
+8) Creating sorting queries ( both ascending/descending) for product price,size,rating
+http://localhost:8983/solr/coreecommerce/select?df=name&q=*%3A*&rows=100&sort=price%20desc&start=0&sort=size%20desc&sort=rating%20desc
+http://localhost:8983/solr/coreecommerce/select?df=name&q=*%3A*&rows=100&sort=price%20asc&start=0&sort=size%20asc&sort=rating%20asc
+
+
+
+9) Create java utility for adding new comments on product
+See SolrJavaPracticeProduct folder for java code.
+
