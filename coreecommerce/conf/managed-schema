@@ -453,13 +453,13 @@
   <field name="_version_" type="plong" indexed="false" stored="false"/>
   <field name="availability" type="boolean" indexed="true" stored="true"/>
   <field name="category" type="text_general" multiValued="false" indexed="true" stored="true"/>
-  <field name="color" type="text_general" multiValued="false" indexed="true" stored="true"/>
+  <field name="color" type="string" multiValued="false" indexed="true" stored="true"/>
   <field name="color_" type="text_general"/>
   <field name="comments" type="text_general" multiValued="true" indexed="true" stored="true"/>
   <field name="description" type="text_general" indexed="true" stored="true"/>
   <field name="gender" type="string" multiValued="true" indexed="true" stored="true"/>
   <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
-  <field name="manufacturer" type="text_general" indexed="true" stored="true"/>
+  <field name="manufacturer" type="string" indexed="true" stored="true"/>
   <field name="manufacturer_" type="text_general"/>
   <field name="name" type="text_general" indexed="true" required="true" stored="true"/>
   <field name="offers" type="text_general" indexed="true" stored="true"/>
